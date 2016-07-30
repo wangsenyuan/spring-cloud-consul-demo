@@ -13,3 +13,8 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+.gitignore
+adder/target/generated-sources/
+adder/target/generated-test-sources/
+facade/target/generated-sources/
+facade/target/generated-test-sources/
