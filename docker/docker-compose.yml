@@ -1,0 +1,17 @@
+discovery:
+  image: progrium/consul
+  ports:
+    - "8500:8500"
+adder:
+  image: wsy/adder
+  ports:
+    - "3333:3333"
+  links:
+    - discovery
+facade:
+  image: wsy/facade
+  ports:
+    - "2222:2222"
+  links:
+    - discovery
+    - adder

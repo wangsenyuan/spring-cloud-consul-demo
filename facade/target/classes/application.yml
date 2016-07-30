@@ -1,0 +1,18 @@
+server:
+  port: 2222
+spring:
+  application:
+    name: facade
+  cloud:
+    consul:
+      host: discovery
+      port: 8500
+      discovery:
+        ipAddress: localhost
+        port: 2222
+        preferIpAddress: true
+        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+
