@@ -14,7 +14,5 @@
 hs_err_pid*
 
 .gitignore
-adder/target/generated-sources/
-adder/target/generated-test-sources/
-facade/target/generated-sources/
-facade/target/generated-test-sources/
+adder/target
+facade/target

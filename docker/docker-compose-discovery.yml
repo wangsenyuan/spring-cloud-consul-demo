@@ -1,7 +1,9 @@
 discovery:
-  image: progrium/consul
-  command: -server -bootstrap
+  image: "progrium/consul:latest"
+  container_name: "discovery-consul"
+  hostname: "discovery-consul"
   ports:
-    - 8400:8400
-    - 8500:8500
-    - 8600:8600
+    - "8400:8400"
+    - "8500:8500"
+    - "8600:53"
+  command: "-server -bootstrap -ui-dir /ui"
