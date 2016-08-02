@@ -6,7 +6,7 @@ spring:
     name: adder
   cloud:
     consul:
-      host: consul1
+      host: discovery
       port: 8500
       discovery:
         preferIpAddress: true

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 wait_single_host() {
   local host=$1
   shift
@@ -30,3 +32,5 @@ wait_all_hosts() {
 }
 
 wait_all_hosts
+
+exec $1
