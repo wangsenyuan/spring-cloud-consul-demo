@@ -1,0 +1,14 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config
+  cloud:
+    consul:
+      host: discovery
+      port: 8500
+      discovery:
+        preferIpAddress: true
+        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
