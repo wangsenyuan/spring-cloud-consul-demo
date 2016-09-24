@@ -5,12 +5,12 @@ spring:
     name: facade
   cloud:
     consul:
-      host: discovery
+      host: localhost
       port: 8500
       discovery:
         preferIpAddress: true
         healthCheckPath: /health
         healthCheckInterval: 15s
         instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-
-
+    config:
+      uri: http://localhost:8888

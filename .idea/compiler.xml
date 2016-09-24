@@ -23,11 +23,13 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="adder" />
+        <module name="config-server" />
         <module name="facade" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="adder" target="1.8" />
+      <module name="config-server" target="1.8" />
       <module name="consul" target="1.8" />
       <module name="facade" target="1.8" />
       <module name="spring-cloud-consul-demo" target="1.8" />
