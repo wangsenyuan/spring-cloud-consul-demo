@@ -1,8 +1,9 @@
 server:
-  port: 2222
+  port: 3333
+
 spring:
   application:
-    name: facade
+    name: adder
   cloud:
     consul:
       host: discovery
@@ -12,5 +13,3 @@ spring:
         healthCheckPath: /health
         healthCheckInterval: 15s
         instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-
-
