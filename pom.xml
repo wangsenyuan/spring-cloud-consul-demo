@@ -112,4 +112,22 @@
         </pluginRepository>
     </pluginRepositories>
 
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <activeProfile>default</activeProfile>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <activeProfile>dev</activeProfile>
+            </properties>
+        </profile>
+    </profiles>
 </project>

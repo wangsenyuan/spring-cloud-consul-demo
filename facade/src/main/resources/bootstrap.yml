@@ -16,3 +16,5 @@ spring:
       discovery:
         enabled: true
         serviceId: config
+  profiles:
+    active: @activeProfile@
