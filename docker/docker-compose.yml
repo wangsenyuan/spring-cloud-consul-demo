@@ -1,29 +1,58 @@
-discovery:
-  image: "progrium/consul:latest"
-  container_name: "discovery-consul"
-  hostname: "discovery-consul"
-  ports:
-    - "8400:8400"
-    - "8500:8500"
-    - "8600:53"
-  command: "-server -bootstrap -ui-dir /ui"
-config:
-  image: "wsy/config-server"
-  ports:
-   - "8888:8888"
-  links:
-   - discovery
-adder:
-  image: wsy/adder
-  ports:
-   - "3333:3333"
-  links:
-   - discovery
-facade:
-  image: wsy/facade
-  ports:
-   - "2222:2222"
-  links:
-   - discovery
-   - adder
-   - config
+version: "2"
+services:
+  discovery:
+    image: "progrium/consul:latest"
+    container_name: "discovery"
+    hostname: "discovery"
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53"
+    command: "-server -bootstrap-expect 3 -ui-dir /ui"
+  discovery2:
+    image: "progrium/consul:latest"
+    container_name: "discovery2"
+    hostname: "discovery2"
+    expose:
+      - "8400"
+      - "8500"
+      - "8600"
+    command: "-server -join discovery"
+    depends_on:
+      - discovery
+  discovery3:
+    image: "progrium/consul:latest"
+    container_name: "discovery3"
+    hostname: "discovery3"
+    expose:
+      - "8400"
+      - "8500"
+      - "8600"
+    command: "-server -join discovery"
+    depends_on:
+      - discovery
+  config:
+    image: "wsy/config-server"
+    ports:
+     - "8888:8888"
+    links:
+     - discovery
+  adder:
+    image: wsy/adder
+    ports:
+     - "3333:3333"
+    links:
+     - discovery
+    depends_on:
+     - discovery
+  facade:
+    image: wsy/facade
+    ports:
+     - "2222:2222"
+    links:
+     - discovery
+     - adder
+     - config
+    depends_on:
+     - config
+    entrypoint: ./wait-for-it.sh http://config:8888/health "java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
