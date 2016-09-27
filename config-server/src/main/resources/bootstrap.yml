@@ -12,3 +12,5 @@ spring:
         healthCheckPath: /health
         healthCheckInterval: 15s
         instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+  active:
+    profile: dev
