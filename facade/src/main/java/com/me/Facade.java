@@ -21,6 +21,10 @@ public class Facade {
 
     @Value("${message:Hello default}") private String message;
 
+
+    @Value("${message2:Hello default}") private String message2;
+
+
     @RequestMapping("/facade/add/{a}/{b}")
     public int add(@PathVariable("a") int a, @PathVariable("b") int b) {
         int c = restTemplate.getForObject("http://localhost:1111/add/{a}/{b}", Integer.class, a, b);
@@ -30,5 +34,10 @@ public class Facade {
     @RequestMapping("/facade/message")
     public String message() {
         return message;
+    }
+
+    @RequestMapping("/facade/message2")
+    public String message2() {
+        return message2;
     }
 }

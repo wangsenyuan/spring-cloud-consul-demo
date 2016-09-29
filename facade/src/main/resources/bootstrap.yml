@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: facade
+  profiles:
+    active: dev
   cloud:
     consul:
       host: discovery
@@ -16,5 +18,3 @@ spring:
       discovery:
         enabled: true
         serviceId: config
-  profiles:
-    active: @activeProfile@
