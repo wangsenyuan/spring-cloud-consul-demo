@@ -9,6 +9,7 @@ spring:
 allowed:
   applications:
     - facade
+    - application
   urls:
     - refresh
     - error
