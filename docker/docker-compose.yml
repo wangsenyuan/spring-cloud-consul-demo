@@ -34,7 +34,7 @@ services:
   config:
     image: "wsy/config-server"
     ports:
-     - "8888:8888"
+     - "4444:4444"
     links:
      - discovery
   adder:
@@ -55,4 +55,4 @@ services:
      - config
     depends_on:
      - config
-    entrypoint: ./wait-for-it.sh http://config:8888/health "java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
+    entrypoint: ./wait-for-it.sh http://config:4444/health "java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"

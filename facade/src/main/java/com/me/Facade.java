@@ -1,8 +1,8 @@
 package com.me;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +26,14 @@ public class Facade {
 
 
     @RequestMapping("/facade/add/{a}/{b}")
+    @HystrixCommand(fallbackMethod = "addFail")
     public int add(@PathVariable("a") int a, @PathVariable("b") int b) {
-        int c = restTemplate.getForObject("http://localhost:1111/add/{a}/{b}", Integer.class, a, b);
+        int c = restTemplate.getForObject("http://adder:3333/add/{a}/{b}", Integer.class, a, b);
         return c;
+    }
+
+    public int addFail(int a, int b) {
+        return -1;
     }
 
     @RequestMapping("/facade/message")
