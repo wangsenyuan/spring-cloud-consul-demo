@@ -24,12 +24,18 @@ public class Facade {
 
     @Value("${message2:Hello default}") private String message2;
 
+    @Value("${backend.svc.adder.endpoint}") private String adderSvcEndpoint;
 
     @RequestMapping("/facade/add/{a}/{b}")
     @HystrixCommand(fallbackMethod = "addFail")
     public int add(@PathVariable("a") int a, @PathVariable("b") int b) {
-        int c = restTemplate.getForObject("http://adder:3333/add/{a}/{b}", Integer.class, a, b);
-        return c;
+        try {
+            int c = restTemplate.getForObject(adderSvcEndpoint + "/add/{a}/{b}", Integer.class, a, b);
+            return c;
+        } catch (RuntimeException ex) {
+            ex.printStackTrace();
+            throw ex;
+        }
     }
 
     public int addFail(int a, int b) {

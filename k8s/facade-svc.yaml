@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: facade
+  labels:
+    app: facade
+spec:
+  selector:
+    app: facade
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 2222
+  type: NodePort

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: facade
+  labels:
+    app: facade
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: facade
+  template:
+    metadata:
+      labels:
+        app: facade
+    spec:
+      containers:
+      - name: facade
+        image: "wsy/facade:V1"
+        ports:
+        - containerPort: 2222
+        imagePullPolicy: IfNotPresent

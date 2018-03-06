@@ -25,6 +25,7 @@
         <java.version>1.8</java.version>
         <docker.image.prefix>wsy</docker.image.prefix>
         <start-class>com.me.AdderApplication</start-class>
+        <docker.image.version>V1</docker.image.version>
     </properties>
 
     <dependencies>
@@ -48,11 +49,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-consul-all</artifactId>
         </dependency>
 
         <dependency>
@@ -111,7 +107,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageName>${docker.image.prefix}/${project.artifactId}:${docker.image.version}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <resources>
                         <resource>

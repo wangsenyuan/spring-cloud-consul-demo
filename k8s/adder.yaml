@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adder-deployment
+  labels:
+    app: adder
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: adder
+  template:
+    metadata:
+      labels:
+        app: adder
+    spec:
+      containers:
+      - name: adder
+        image: "wsy/adder:V1"
+        ports:
+        - containerPort: 3333
+        imagePullPolicy: IfNotPresent

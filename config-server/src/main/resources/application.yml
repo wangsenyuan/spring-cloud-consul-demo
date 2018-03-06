@@ -13,3 +13,7 @@ allowed:
   urls:
     - refresh
     - error
+server:
+  port: 4444
+management:
+  port: 4444

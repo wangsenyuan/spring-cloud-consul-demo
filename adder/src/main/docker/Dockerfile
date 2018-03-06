@@ -3,4 +3,4 @@ VOLUME /tmp
 ADD adder-0.0.1-SNAPSHOT.jar app.jar
 RUN bash -c 'touch /app.jar'
 EXPOSE 3333
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+CMD ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
