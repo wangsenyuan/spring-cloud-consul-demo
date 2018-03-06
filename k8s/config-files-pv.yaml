@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: config-files
+  labels:
+      type: local
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 500m
+  hostPath:
+    path: "/mnt/data/spring-cloud-config-demo"

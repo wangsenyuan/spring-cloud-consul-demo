@@ -14,9 +14,17 @@ spec:
       labels:
         app: config-server
     spec:
+      volumes:
+        - name: config-files-storage
+          persistentVolumeClaim:
+           claimName: config-files-claim
       containers:
-      - name: adder
-        image: "wsy/config-server:V1"
-        ports:
-        - containerPort: 4444
-        imagePullPolicy: IfNotPresent
+        - name: config-server
+          image: "wsy/config-server:V1"
+          ports:
+            - containerPort: 4444
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: "/usr/share/config-files"
+              name: config-files-storage
+

@@ -3,7 +3,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/wangsenyuan/spring-cloud-config-demo.git
+          uri: /usr/share/config-files
           searchPaths: '{profile}'
           cloneOnStart: true
 allowed:
