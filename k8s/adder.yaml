@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: adder
-        image: "adder:V1"
+        image: "registry.cn-hangzhou.aliyuncs.com/wsy-docker/adder:V1"
         ports:
         - containerPort: 3333
         imagePullPolicy: IfNotPresent
