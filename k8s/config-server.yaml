@@ -20,7 +20,9 @@ spec:
            claimName: config-files-claim
       containers:
         - name: config-server
-          image: "wsy/config-server:V1"
+          image: "config-server:V1"
+          imagePullSecrets:
+            - name: aliyun-docker-regcred
           ports:
             - containerPort: 4444
           imagePullPolicy: IfNotPresent

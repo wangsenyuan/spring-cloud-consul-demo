@@ -16,7 +16,9 @@ spec:
     spec:
       containers:
       - name: adder
-        image: "wsy/adder:V1"
+        image: "adder:V1"
         ports:
         - containerPort: 3333
         imagePullPolicy: IfNotPresent
+        imagePullSecrets:
+          - name: aliyun-docker-regcred
