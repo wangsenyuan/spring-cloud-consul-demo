@@ -19,10 +19,10 @@ spec:
           persistentVolumeClaim:
            claimName: config-files-claim
       containers:
+          imagePullSecrets:
+          - name: aliyun-docker-regcred
         - name: config-server
           image: "config-server:V1"
-          imagePullSecrets:
-            - name: aliyun-docker-regcred
           ports:
             - containerPort: 4444
           imagePullPolicy: IfNotPresent

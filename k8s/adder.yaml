@@ -20,5 +20,5 @@ spec:
         ports:
         - containerPort: 3333
         imagePullPolicy: IfNotPresent
-        imagePullSecrets:
-          - name: aliyun-docker-regcred
+      imagePullSecrets:
+        - name: aliyun-docker-regcred

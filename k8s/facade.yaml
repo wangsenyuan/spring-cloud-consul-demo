@@ -17,8 +17,8 @@ spec:
       containers:
       - name: facade
         image: "facade:V1"
-        imagePullSecrets:
-          - name: aliyun-docker-regcred
         ports:
           - containerPort: 2222
         imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+      - name: aliyun-docker-regcred
