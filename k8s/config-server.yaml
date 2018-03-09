@@ -18,9 +18,9 @@ spec:
         - name: config-files-storage
           persistentVolumeClaim:
            claimName: config-files-claim
+      imagePullSecrets:
+        - name: aliyun-docker-regcred
       containers:
-          imagePullSecrets:
-          - name: aliyun-docker-regcred
         - name: config-server
           image: "config-server:V1"
           ports:
