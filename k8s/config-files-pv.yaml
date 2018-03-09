@@ -11,4 +11,4 @@ spec:
   capacity:
     storage: 500m
   hostPath:
-    path: "/mnt/data/spring-cloud-config-demo"
+    path: "/root/git/spring-cloud-config-demo"
