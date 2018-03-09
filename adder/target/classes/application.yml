@@ -1,5 +1,0 @@
-server:
-  port: 3333
-management:
-  port: 3333
-

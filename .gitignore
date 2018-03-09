@@ -19,3 +19,4 @@ facade/target
 .idea/
 .idea/*
 target/
+*/target/
