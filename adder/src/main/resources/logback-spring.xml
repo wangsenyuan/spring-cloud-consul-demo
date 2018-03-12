@@ -1,0 +1,13 @@
+<configuration debug="false">
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"/>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>
+                %highlight(%d %-5p [%t] %c{50}:%L - %m%n)
+            </Pattern>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
