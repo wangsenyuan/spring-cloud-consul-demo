@@ -1,5 +1,6 @@
 1. go through https://kubernetes.io/docs/setup/independent/install-kubeadm/
 2. go through http://blog.csdn.net/u012375924/article/details/78987263
+3. go through if need logging http://blog.csdn.net/aixiaoyang168/article/details/78454927
 3. record ip address
    1. ifconfig -a
     '''  192.168.5.47 '''
@@ -64,4 +65,26 @@ EOF
     1. kubeadm join --token 2fae1b.e4306e679794caaf 172.16.93.220:6443 --discovery-token-ca-cert-hash sha256:26d12811d5a60ecd91ba6bfea03daa34460d6143ceb11777179fd02e09f0ad16
 14. install kubernates dashboard
    token:      eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbi10b2tlbi1meDdxNyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjIyOGZkODNhLTIyYzEtMTFlOC1hMWEyLWY4ZGI4OGZmNjExNCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTprdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbiJ9.C_wjIh1J2hbWEp-kCtXf6ftYJ7Ecc6S0xFaJwekk0DPf-TBVUGWPqBhJS2tAblmh6HVpg7fgWAmkD5FqvFudTIThMAYt_956E7tgTStMNj_NCUlvbTj7knh-d-TdJQlzfkNcvXBYP0cTWyKFP0jAmIIEFoWyD9KGqRvNzRaZh9eW3cu3k7SjXg6vtDg0ma8lhq5FY25edIhBsawnMGSedsyPCDsm8KvcJCs81rwvIwRPq_yaja1tWWvjqKAdX1hIBQVV6MkZezgWvSRKwoI3Si89W8WTxXdjDzQuXFaGve64nZX0vWPNSidxAlKj9ptuZA-5I6Z1vkcYrncoAUa_xw
-15.
+15. logging configuration
+    1. git clone https://github.com/kubernetes/kubernetes.git
+    2. cd kubernetes
+    3. git checkout v1.9.3
+    4. cd cluster/addons/fluentd-elasticsearch
+    5. change log-driver to json-file: vi /etc/sysconfig/docker  
+       
+       ` OPTIONS='--selinux-enabled --log-driver=json-file --signature-verification=false' `
+    6. systemctl daemon-reload && systemctl restart docker
+    7. cd kubernetes/cluster/addons/fluentd-elasticsearch
+    8. kubectl apply -f fluentd-es-configmap.yaml
+    9. kubectl apply -f fluentd-es-ds.yaml
+    10. kubectl label node kuber beta.kubernetes.io/fluentd-ds-ready=true
+    11. kubectl apply -f es-statefulset.yaml
+    12. kubectl apply -f es-service.yaml 
+    13. kubectl apply -f kibana-deployment.yaml
+    14. kubectl proxy --address='192.168.5.15' --port=8085 --accept-hosts='^*$'
+16. node rejoin cluster (https://stackoverflow.com/questions/47126779/join-cluster-after-init-token-expired)
+    1. login to master node
+    2. kubeadm token create
+    3. openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+    4. node join the kubeadm join cmd
+    ` kubeadm join --token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:e18105ef24bacebb23d694dad491e8ef1c2ea9ade944e784b1f03a15a0d5ecea 1.2.3.4:6443`
