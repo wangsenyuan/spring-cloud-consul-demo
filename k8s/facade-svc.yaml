@@ -10,5 +10,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 2222
+    targetPort: http
   type: NodePort

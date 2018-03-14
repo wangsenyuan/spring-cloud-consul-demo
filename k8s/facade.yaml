@@ -19,6 +19,7 @@ spec:
         image: "registry.cn-hangzhou.aliyuncs.com/wsy-docker/facade:V1"
         ports:
           - containerPort: 2222
+            name: http
         imagePullPolicy: IfNotPresent
       imagePullSecrets:
       - name: aliyun-docker-regcred

@@ -19,6 +19,7 @@ spec:
         image: "registry.cn-hangzhou.aliyuncs.com/wsy-docker/adder:V2"
         ports:
         - containerPort: 3333
+          name: http
         imagePullPolicy: IfNotPresent
       imagePullSecrets:
         - name: aliyun-docker-regcred

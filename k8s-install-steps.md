@@ -88,3 +88,5 @@ EOF
     3. openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
     4. node join the kubeadm join cmd
     ` kubeadm join --token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:e18105ef24bacebb23d694dad491e8ef1c2ea9ade944e784b1f03a15a0d5ecea 1.2.3.4:6443`
+17. install heapster to monitor resource usage:
+    1. https://github.com/kubernetes/heapster/blob/master/docs/influxdb.md
