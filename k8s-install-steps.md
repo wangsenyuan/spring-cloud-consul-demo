@@ -96,3 +96,7 @@ EOF
        1. 要配置hostNetwork: true
        2. 要配置serviceAccountName.
     2. ingress 貌似不能支持同时配置http/https
+19. push to private docker registry
+    1. docker login
+    2. mvn setting.xml configure sever
+    3. pom.xml indicate serverId

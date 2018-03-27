@@ -27,7 +27,7 @@ spec:
         config.files.prepared: true
       containers:
         - name: config-server
-          image: "registry.cn-hangzhou.aliyuncs.com/wsy-docker/config-server:V1"
+          image: "registry.cn-hangzhou.aliyuncs.com/maycur/config-server:V1"
           ports:
             - containerPort: 4444
           imagePullPolicy: IfNotPresent

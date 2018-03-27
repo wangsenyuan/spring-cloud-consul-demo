@@ -114,7 +114,7 @@
                         <configuration>
                             <image>${project.artifactId}:${docker.image.version}</image>
                             <newName>
-                                registry.cn-hangzhou.aliyuncs.com/wsy-docker/${project.artifactId}:${docker.image.version}
+                                registry.cn-hangzhou.aliyuncs.com/maycur/${project.artifactId}:${docker.image.version}
                             </newName>
                         </configuration>
                     </execution>
@@ -126,7 +126,7 @@
                         </goals>
                         <configuration>
                             <imageName>
-                                registry.cn-hangzhou.aliyuncs.com/wsy-docker/${project.artifactId}:${docker.image.version}
+                                registry.cn-hangzhou.aliyuncs.com/maycur/${project.artifactId}:${docker.image.version}
                             </imageName>
                         </configuration>
                     </execution>
@@ -134,7 +134,7 @@
                 <configuration>
                     <imageName>${project.artifactId}:${docker.image.version}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
-                    <serverId>aliyun-docker-hub</serverId>
+                    <serverId>aliyun-maycur-docker-hub</serverId>
                     <registryUrl>registry.cn-hangzhou.aliyuncs.com</registryUrl>
                     <resources>
                         <resource>

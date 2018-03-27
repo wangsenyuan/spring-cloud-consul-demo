@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: facade
-        image: "registry.cn-hangzhou.aliyuncs.com/wsy-docker/facade:V1"
+        image: "registry.cn-hangzhou.aliyuncs.com/maycur/facade:V1"
         ports:
           - containerPort: 2222
             name: http

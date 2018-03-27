@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: adder
-        image: "registry.cn-hangzhou.aliyuncs.com/wsy-docker/adder:V2"
+        image: "registry.cn-hangzhou.aliyuncs.com/maycur/adder:V2"
         ports:
         - containerPort: 3333
           name: http
