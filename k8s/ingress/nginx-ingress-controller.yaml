@@ -186,7 +186,8 @@ roleRef:
   name: nginx-ingress-clusterrole
 subjects:
   - kind: ServiceAccount
-    name: nginx-ingress-serviceaccount
+    name: nginx-ingress-
+    namespace: default
 
 ---
 apiVersion: extensions/v1beta1
