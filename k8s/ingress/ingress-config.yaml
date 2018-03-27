@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: k8s-facade-cc-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: k8s-facade.maycur.cc
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: facade
+          servicePort: 80
