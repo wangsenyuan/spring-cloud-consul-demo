@@ -186,7 +186,7 @@ roleRef:
   name: nginx-ingress-clusterrole
 subjects:
   - kind: ServiceAccount
-    name: nginx-ingress-
+    name: nginx-ingress-serviceaccount
     namespace: default
 
 ---
