@@ -64,7 +64,6 @@ EOF
 13. join worker nodes
     1. kubeadm join --token 2fae1b.e4306e679794caaf 172.16.93.220:6443 --discovery-token-ca-cert-hash sha256:26d12811d5a60ecd91ba6bfea03daa34460d6143ceb11777179fd02e09f0ad16
 14. install kubernates dashboard
-   token:      eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbi10b2tlbi1meDdxNyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjIyOGZkODNhLTIyYzEtMTFlOC1hMWEyLWY4ZGI4OGZmNjExNCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTprdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbiJ9.C_wjIh1J2hbWEp-kCtXf6ftYJ7Ecc6S0xFaJwekk0DPf-TBVUGWPqBhJS2tAblmh6HVpg7fgWAmkD5FqvFudTIThMAYt_956E7tgTStMNj_NCUlvbTj7knh-d-TdJQlzfkNcvXBYP0cTWyKFP0jAmIIEFoWyD9KGqRvNzRaZh9eW3cu3k7SjXg6vtDg0ma8lhq5FY25edIhBsawnMGSedsyPCDsm8KvcJCs81rwvIwRPq_yaja1tWWvjqKAdX1hIBQVV6MkZezgWvSRKwoI3Si89W8WTxXdjDzQuXFaGve64nZX0vWPNSidxAlKj9ptuZA-5I6Z1vkcYrncoAUa_xw
 15. logging configuration
     1. git clone https://github.com/kubernetes/kubernetes.git
     2. cd kubernetes
@@ -81,7 +80,8 @@ EOF
     11. kubectl apply -f es-statefulset.yaml
     12. kubectl apply -f es-service.yaml 
     13. kubectl apply -f kibana-deployment.yaml
-    14. kubectl proxy --address='192.168.5.15' --port=8085 --accept-hosts='^*$'
+    14. kubectl apply -f kibana-service.yaml
+    ～～ 15. kubectl proxy --address='192.168.5.15' --port=8085 --accept-hosts='^*$' ～～
 16. node rejoin cluster (https://stackoverflow.com/questions/47126779/join-cluster-after-init-token-expired)
     1. login to master node
     2. kubeadm token create
@@ -90,3 +90,9 @@ EOF
     ` kubeadm join --token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:e18105ef24bacebb23d694dad491e8ef1c2ea9ade944e784b1f03a15a0d5ecea 1.2.3.4:6443`
 17. install heapster to monitor resource usage:
     1. https://github.com/kubernetes/heapster/blob/master/docs/influxdb.md
+
+18. ingress
+    1. 安装nginx-ingress-controller, 有两个地方需要主要， 
+       1. 要配置hostNetwork: true
+       2. 要配置serviceAccountName.
+    2. ingress 貌似不能支持同时配置http/https
