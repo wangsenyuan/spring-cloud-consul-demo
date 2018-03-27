@@ -24,7 +24,7 @@ spec:
       imagePullSecrets:
         - name: aliyun-docker-regcred
       nodeSelector:
-        config.files.prepared: true
+        config.files.prepared: "true"
       containers:
         - name: config-server
           image: "registry.cn-hangzhou.aliyuncs.com/maycur/config-server:V1"
