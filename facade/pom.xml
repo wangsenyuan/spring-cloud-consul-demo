@@ -24,7 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <docker.image.prefix>wsy</docker.image.prefix>
-        <docker.image.version>V1</docker.image.version>
+        <docker.image.version>V2</docker.image.version>
         <start-class>com.me.FacadeApplication</start-class>
     </properties>
 
