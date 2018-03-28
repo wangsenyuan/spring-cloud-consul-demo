@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: config-server
+  name: config-server-test
   labels:
-    app: config-server
+    app: config-server-test
 spec:
   selector:
-    app: config-server
+    app: config-server-test
   ports:
   - protocol: TCP
     port: 80

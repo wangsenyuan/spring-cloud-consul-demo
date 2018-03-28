@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: config-server
+  name: config-server-test
   labels:
-    app: config-server
+    app: config-server-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: config-server
+      app: config-server-test
   template:
     metadata:
       labels:
-        app: config-server
+        app: config-server-test
     spec:
       volumes:
         - name: config-files-storage
@@ -26,7 +26,7 @@ spec:
       nodeSelector:
         config.files.prepared: "true"
       containers:
-        - name: config-server
+        - name: config-server-test
           image: "registry.cn-hangzhou.aliyuncs.com/maycur/config-server:V1"
           ports:
             - containerPort: 4444
