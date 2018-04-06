@@ -48,8 +48,13 @@ EOF
    baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
    enabled=1
    gpgcheck=0
-   2. yum install -y kubelet kubeadm kubectl
+   2. yum install -y kubelet-1.9.6 kubectl-1.9.6 kubeadm-1.9.6
    3. setenforce 0
+   4. cat > /etc/systemd/system/kubelet.service.d/20-pod-infra-image.conf <<EOF
+   [Service]
+   Environment="KUBELET_EXTRA_ARGS=--pod-infra-container-image=registry.cn-hangzhou.aliyuncs.com/maycur-k8s/pause-amd64:3.1"
+   EOF
+   
    4. systemctl enable kubelet && sudo systemctl start kubelet
 11. initialize kubenetes cluster
    1. master
@@ -100,3 +105,6 @@ EOF
     1. docker login
     2. mvn setting.xml configure sever
     3. pom.xml indicate serverId
+20. check service
+    1. kubectl run curl --image=radial/busyboxplus:curl -i --tty
+    2. nslookup config-server
