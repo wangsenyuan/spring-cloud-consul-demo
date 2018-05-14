@@ -9,7 +9,8 @@
     '''  B1C9BC39-A247-429C-86B3-270A887B2F43  '''
 5. verify ports [6443, 10251] open
    1. firewall-cmd --list-ports
-   2. firewall-cmd --add-port=10250/tcp --permanent
+   2. firewall-cmd --add-port
+   
    3. firewall-cmd —reload
    4. firewall-cmd --add-port=portid-portid/protocol
    5. service firewalld stop
