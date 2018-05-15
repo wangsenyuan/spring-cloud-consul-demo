@@ -30,7 +30,7 @@ spec:
           image: "registry.cn-hangzhou.aliyuncs.com/maycur/config-server-test:V1"
           ports:
             - containerPort: 4444
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           volumeMounts:
             - mountPath: "/usr/share/config-files"
               name: config-files-storage

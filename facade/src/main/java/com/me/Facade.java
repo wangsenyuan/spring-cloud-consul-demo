@@ -29,6 +29,7 @@ public class Facade {
     @RequestMapping("/facade/add/{a}/{b}")
     @HystrixCommand(fallbackMethod = "addFail")
     public int add(@PathVariable("a") int a, @PathVariable("b") int b) {
+        System.out.println("in norma add (" + a + ", " + b + ")");
         try {
             int c = restTemplate.getForObject(adderSvcEndpoint + "/add/{a}/{b}", Integer.class, a, b);
             return c;
@@ -38,7 +39,9 @@ public class Facade {
         }
     }
 
-    public int addFail(int a, int b) {
+    public int addFail(int a, int b, Throwable ex) {
+        System.out.println("in addFail(" + a + ", " + b + ")");
+        ex.printStackTrace();
         return -1;
     }
 

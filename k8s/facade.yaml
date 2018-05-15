@@ -20,6 +20,6 @@ spec:
         ports:
           - containerPort: 2222
             name: http
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
       imagePullSecrets:
       - name: aliyun-docker-regcred
