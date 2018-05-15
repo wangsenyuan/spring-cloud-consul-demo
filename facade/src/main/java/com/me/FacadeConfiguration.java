@@ -1,5 +1,6 @@
 package com.me;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +22,8 @@ public class FacadeConfiguration {
 
     @Bean
     @Primary
-    public RestTemplate createResetTemplate() {
-        return new RestTemplate();
+    public RestTemplate createResetTemplate(RestTemplateBuilder builder) {
+        return builder.setConnectTimeout(1000).setReadTimeout(1000).build();
     }
 
     @Bean

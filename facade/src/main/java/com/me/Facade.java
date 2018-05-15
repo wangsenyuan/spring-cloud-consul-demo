@@ -1,6 +1,7 @@
 package com.me;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -27,13 +28,17 @@ public class Facade {
     @Value("${backend.svc.adder.endpoint}") private String adderSvcEndpoint;
 
     @RequestMapping("/facade/add/{a}/{b}")
-    @HystrixCommand(fallbackMethod = "addFail")
+    @HystrixCommand(fallbackMethod = "addFail", commandProperties = {
+        @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"),
+        @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "3"),
+        @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "2000")})
     public int add(@PathVariable("a") int a, @PathVariable("b") int b) {
         System.out.println("in norma add (" + a + ", " + b + ")");
         try {
             int c = restTemplate.getForObject(adderSvcEndpoint + "/add/{a}/{b}", Integer.class, a, b);
             return c;
         } catch (RuntimeException ex) {
+            System.out.println("error happened " + ex.getMessage());
             ex.printStackTrace();
             throw ex;
         }
@@ -41,7 +46,11 @@ public class Facade {
 
     public int addFail(int a, int b, Throwable ex) {
         System.out.println("in addFail(" + a + ", " + b + ")");
-        ex.printStackTrace();
+        if (ex != null) {
+            ex.printStackTrace();
+        } else {
+            System.out.println("null ex");
+        }
         return -1;
     }
 
